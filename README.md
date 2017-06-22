@@ -4,7 +4,7 @@
 
 [Check out the demo here](http://www.qimingweng.com/react-modal-dialog/)
 
-This is a forked version of the modal which adds new funcitonalities. For more information refer to the [Fork Changes](#Fork-Changes) section.
+This is a forked version of the modal which adds new funcitonalities. For more information refer to the [Fork Changes](#fork-changes) section.
 
 React modal dialog is an idiomatic way to represent modal dialogs in react. It is nested inside the components that require them, and can themselves nest other dialogs. There are no global switches or state, and the contents of the dialog are defined where you need it.
 
@@ -136,8 +136,7 @@ Feel free to send pull requests, or help document this project more.
 
 ## Adding custom buttons
 
-The prop buttons is added to the ModalDialog component. It spects an array of elements that are going to be added in the same sections as the close button.
-In order to maintein the style of the modal the component CircleButton used for the CloseButton has been made public.
+The buttons prop is added to the ModalDialog component. It expects an array of elements that are going to be added in the same section as the close button. 
 
 ```javascript
 import React, {PropTypes} from 'react';
@@ -150,11 +149,15 @@ class View extends React.Component {
   }
   handleClick = () => this.setState({isShowingModal: true})
   handleClose = () => this.setState({isShowingModal: false})
+  handelDownload = () => { /* download logic */ }
   render() {
     const buttons = [
-      <CircleButton onClick={e => { console.log(e) }} diameter={40} background={'#4286f4'}>
-               <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z" transform="translate(8, 8)"></path>
-      </CircleButton> 
+      <a onClick={handelDownload}>
+        <svg width={40} height={40}>
+          <circle cx={20} cy={10} r={10} fill={background} />
+          <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z" transform="translate(8, 8)" ></path>
+        </svg>
+      </a>
     ];
     return <div onClick={this.handleClick}>
       {

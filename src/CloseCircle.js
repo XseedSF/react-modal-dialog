@@ -11,7 +11,8 @@ const CloseCircle = (props) => {
 
   const radius = diameter / 2;
 
-  return (
+  return <svg width={diameter} height={diameter}>
+    <circle cx={radius} cy={radius} r={radius} fill="black"/>
     <g transform={`rotate(45 ${diameter / 2} ${diameter / 2})`}>
       <rect
         x={MARGIN}
@@ -28,7 +29,7 @@ const CloseCircle = (props) => {
         fill="white"
       />
     </g>
-    );
+  </svg>;
 };
 
 CloseCircle.propTypes = {

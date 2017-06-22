@@ -32,7 +32,6 @@
   },
   "devDependencies": {
     "autoprefixer-core": "^5.2.1",
-    "babel": "^5.8.34",
-    "node-sass": "^4.5.3"
+    "babel": "^5.8.34"
   }
 }
