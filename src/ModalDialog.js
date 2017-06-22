@@ -4,10 +4,12 @@ import classNames from 'classnames';
 import dynamics from 'dynamics.js';
 import centerComponent from 'react-center-component';
 import CloseCircle from './CloseCircle';
+import CircleButton from './CircleButton';
 import EventStack from 'active-event-stack';
 import keycode from 'keycode';
 import { inject } from 'narcissus';
 
+const DIAMETER = 40;
 const styles = {
   dialog: {
     boxSizing: 'border-box',
@@ -18,20 +20,11 @@ const styles = {
     boxShadow: '0px 2px 15px rgba(0, 0, 0, 0.4)',
     borderRadius: 10,
   },
-  closeButton: {
+  buttonsContainer: {      
     position: 'absolute',
     top: 0,
     left: -50,
     display: 'block',
-    width: 40,
-    height: 40,
-    transition: 'transform 0.1s',
-    // backgroundImage: require('../images/modal-dialog-close.png'),
-    // backgroundRepeat: 'no-repeat',
-    // backgroundSize: '40px 40px',
-    '&&:hover': {
-      transform: 'scale(1.1)',
-    },
   },
 };
 
@@ -52,6 +45,7 @@ export default class ModalDialog extends React.Component {
     recenter: PropTypes.func.isRequired,
     top: PropTypes.number,
     dismissOnBackgroundClick: PropTypes.bool,
+    buttons: PropTypes.arrayOf(PropTypes.object),
   }
   static defaultProps = {
     width: 'auto',
@@ -158,6 +152,7 @@ export default class ModalDialog extends React.Component {
         topOffset,
         width,
         dismissOnBackgroundClick,
+        buttons = [],
         ...rest,
       },
     } = this;
@@ -179,11 +174,20 @@ export default class ModalDialog extends React.Component {
       style={dialogStyle}
     >
       {
-        onClose ?
-        <a className={inject(styles.closeButton)} onClick={onClose}>
-          <CloseCircle diameter={40}/>
-        </a> :
-        null
+        onClose || buttons.length > 0 ?
+        <div className={inject(styles.buttonsContainer)} >
+          {
+            onClose 
+              ? <CircleButton onClick={onClose} diameter={DIAMETER} background={'black'}>
+                  <CloseCircle diameter={DIAMETER}/>
+                </CircleButton> 
+              : null
+          }
+          {
+            buttons.map(button => button)
+          }
+        </div> 
+        : null
       }
       {children}
     </div>;

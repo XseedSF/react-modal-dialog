@@ -1,12 +1,12 @@
 {
   "description": "The website for react-modal-dialog",
   "scripts": {
-    "start": "NODE_ENV=development webpack-dev-server --progress",
-    "build-prod": "NODE_ENV=production webpack -p"
+    "start": "SET \"NODE_ENV=development\" && webpack -p && webpack-dev-server --progress",
+    "build-prod": "SET \"NODE_ENV=production\" && webpack -p"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/qimingweng/react-modal-dialog"
+    "url": "https://github.com/XseedSF/react-modal-dialog"
   },
   "dependencies": {
     "babel-core": "^6.3.26",
@@ -24,6 +24,7 @@
     "react-modal-dialog": "^1.0.0",
     "react-router": "^0.13.3",
     "react-spinjs": "^2.0.1",
+    "narcissus": "^1.0.0",
     "webpack": "^1.9.11"
   },
   "devDependencies": {
@@ -33,7 +34,7 @@
     "file-loader": "^0.8.4",
     "highlight.js": "^8.6.0",
     "marked": "^0.3.3",
-    "node-sass": "^3.4.2",
+    "node-sass": "^3.13.1",
     "postcss-loader": "^0.8.0",
     "raw-loader": "^0.5.1",
     "react-spinjs": "^1.0.1",

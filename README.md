@@ -4,6 +4,8 @@
 
 [Check out the demo here](http://www.qimingweng.com/react-modal-dialog/)
 
+This is a forked version of the modal which adds new funcitonalities. For more information refer to the [Fork Changes](#Fork-Changes) section.
+
 React modal dialog is an idiomatic way to represent modal dialogs in react. It is nested inside the components that require them, and can themselves nest other dialogs. There are no global switches or state, and the contents of the dialog are defined where you need it.
 
 ## Design Considerations
@@ -128,6 +130,46 @@ To get the esc key to only close the top dialog when there are two modal dialogs
 # Contributing
 
 Feel free to send pull requests, or help document this project more.
+
+
+# Fork Changes
+
+## Adding custom buttons
+
+The prop buttons is added to the ModalDialog component. It spects an array of elements that are going to be added in the same sections as the close button.
+In order to maintein the style of the modal the component CircleButton used for the CloseButton has been made public.
+
+```javascript
+import React, {PropTypes} from 'react';
+import {ModalContainer, ModalDialog} from 'react-modal-dialog';
+import ReactSpinner from 'react-spinjs';
+
+class View extends React.Component {
+  state = {
+    isShowingModal: false,
+  }
+  handleClick = () => this.setState({isShowingModal: true})
+  handleClose = () => this.setState({isShowingModal: false})
+  render() {
+    const buttons = [
+      <CircleButton onClick={e => { console.log(e) }} diameter={40} background={'#4286f4'}>
+               <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z" transform="translate(8, 8)"></path>
+      </CircleButton> 
+    ];
+    return <div onClick={this.handleClick}>
+      {
+        this.state.isShowingModal &&
+        <ModalContainer onClose={this.handleClose}>
+          <ModalDialog onClose={this.handleClose} buttons={buttons}>
+            <h1>Dialog Content</h1>
+            <p>More Content. Anything goes here</p>
+          </ModalDialog>
+        </ModalContainer>
+      }
+    </div>;
+  }
+}
+```
 
 # A Note on `package.json`
 

@@ -6,6 +6,7 @@ import routes from './routes';
 
 const main = (path, props, done) => {
   Router.run(routes, path, Handler => {
+  	debugger;
     done(
       '<!doctype html>' + ReactDOMServer.renderToString(<Handler/>)
     );

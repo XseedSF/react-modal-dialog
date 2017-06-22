@@ -4,6 +4,7 @@ import ModalContainer from './ModalContainer';
 import ModalDialog from './ModalDialog';
 import ModalPortal from './ModalPortal';
 import UnstyledFlexDialog from './UnstyledFlexDialog';
+import CircleButton from './CircleButton';
 
 export {
   FlexDialog,
@@ -12,4 +13,5 @@ export {
   ModalDialog,
   ModalPortal,
   UnstyledFlexDialog,
+  CircleButton,
 };

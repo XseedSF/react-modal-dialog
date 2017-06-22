@@ -1,6 +1,7 @@
 // HomePageExampleModalButton
 import React, {PropTypes} from 'react';
-import {ModalContainer, ModalDialog} from 'react-modal-dialog';
+import {ModalContainer, ModalDialog, CircleButtons} from '../../../../src';//'react-modal-dialog';
+import DownloadButton from './DownloadButton';
 import ReactSpinner from 'react-spinjs';
 
 export default class HomePageExampleModalButton extends React.Component {
@@ -48,11 +49,19 @@ class FirstModal extends React.Component {
     }, 1500);
   }
   render() {
+    const buttons = [
+      <DownloadButton key="modal-btn1" onClick={this.load} background={'#4286f4'} /> 
+    ];
     return <ModalContainer onClose={this.props.onClose}>
       {this.state.isLoading ?
         <ReactSpinner color="white"/>
         :
-        <ModalDialog onClose={this.props.onClose} className="example-dialog" dismissOnBackgroundClick={false}>
+        <ModalDialog 
+          onClose={this.props.onClose} 
+          className="example-dialog" 
+          dismissOnBackgroundClick={false}
+          buttons={buttons}
+        >
           {this.state.showSecondModal ?
             <SecondModal onClose={this.closeModal}/>
           : null}
